@@ -16,7 +16,7 @@ import cupy as cp
 
 def main():
     # Window title to go after and the height of the screenshots
-    videoGameWindowTitle = "Counter"
+    videoGameWindowTitle = "Rainbow Six"
 
     # Portion of screen to be captured (This forms a square/rectangle around the center of screen)
     screenShotHeight = 320
@@ -27,13 +27,13 @@ def main():
     aaRightShift = 0
 
     # Autoaim mouse movement amplifier
-    aaMovementAmp = 0.6
+    aaMovementAmp = 0.4
 
     # Person Class Confidence
-    confidence = 0.35
+    confidence = 0.5
 
     # What key to press to quit and shutdown the autoaim
-    aaQuitKey = "Q"
+    aaQuitKey = "P"
 
     # If you want to main slightly upwards towards the head
     headshot_mode = True
@@ -42,7 +42,7 @@ def main():
     cpsDisplay = True
 
     # Set to True if you want to get the visuals
-    visuals = False
+    visuals = True
 
     # Selecting the correct game window
     try:
@@ -155,9 +155,13 @@ def main():
                 xMid = targets.iloc[0].current_mid_x + aaRightShift
                 yMid = targets.iloc[0].current_mid_y
 
+                # 0.05 for high recoil (primarily smgs)
+                # 0.1 for medium ??
+                # 0.2 for medium to low recoil (marksman rifles)
+                
                 box_height = targets.iloc[0].height
                 if headshot_mode:
-                    headshot_offset = box_height * 0.38
+                    headshot_offset = box_height * 0.1
                 else:
                     headshot_offset = box_height * 0.2
 
